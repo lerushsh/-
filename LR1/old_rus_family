@@ -47,3 +47,23 @@ parent(duhovlad,zdislava).
 parent(duhovlad,zlatomir).
 parent(zhdana,zdislava).
 parent(zhdana,zlatomir).
+
+%man(+X)
+man:- man(X),write(X),nl,fail.
+%woman(+X)
+woman:- woman(X),write(X),nl,fail.
+%children(+X)
+children(X):- parent(X,Y), write(Y), nl, fail.
+%mother(+X,+Y) - X мама для Y?
+mother(X,Y):- parent(X,Y),woman(X).
+%mother(+X) - вывести маму Х
+mother(X):- parent(Y,X),woman(Y),write(Y), nl, fail.
+%brother(+X,+Y) - X брат для Y?
+brother(X,Y):- man(X),parent(Z,X),parent(Z,Y).
+%brother(+X) - вывести братьев X
+brother(X):- man(Y),mother(Z,X),mother(Z,Y),write(Y),nl,fail.
+%b_s(+X,+Y) - X и Y братья/сестры?
+b_s(X,Y):- mother(Z,X),mother(Z,Y),X\==Y.
+%b_s(+X) - вывести братьев, сестер Х
+b_s(X):- mother(Z,X),mother(Z,Y),write(Y),nl,fail.
+
