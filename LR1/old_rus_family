@@ -75,3 +75,14 @@ son(X):- man(Y), parent(X,Y),write(Y),nl,fail.
 sister(X,Y):- woman(X),parent(Z,X),parent(Z,Y).
 %sister(+X)
 sister(X):- woman(Y),mother(Z,X),mother(Z,Y),X\==Y,write(Y),nl,fail.
+
+%grand_da(+X,+Y)
+grand_da(X,Y):- woman(X),parent(Z,X),parent(Y,Z).
+%grand_dats(+X)
+grand_dats(X):- parent(X,Y),parent(Y,Z),woman(Z),write(Z),nl,fail.
+%grand_ma_and_son(+X,+Y)
+grand_ma_and_son(X,Y):-parent(X,Z),parent(Z,Y),woman(X),man(Y).
+grand_ma_and_son(X,Y):-parent(Y,Z),parent(Z,X),woman(Y),man(X).
+
+nephew(X,Y):- man(X),parent(Z,X),b_s(Y,Z).
+my_nephew(X):- b_s(X,Y),son(Z,Y),write(Z),nl,fail.
