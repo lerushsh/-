@@ -67,3 +67,11 @@ b_s(X,Y):- mother(Z,X),mother(Z,Y),X\==Y.
 %b_s(+X) - вывести братьев, сестер Х
 b_s(X):- mother(Z,X),mother(Z,Y),write(Y),nl,fail.
 
+%son(+X,+Y)
+son(X,Y):- man(X), parent(Y,X).
+%son(+X)
+son(X):- man(Y), parent(X,Y),write(Y),nl,fail.
+%sister(+X,+Y)
+sister(X,Y):- woman(X),parent(Z,X),parent(Z,Y).
+%sister(+X)
+sister(X):- woman(Y),mother(Z,X),mother(Z,Y),X\==Y,write(Y),nl,fail.
